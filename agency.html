@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!--
+  Template: Agency / Studio — "Northbeam Studio"
+  Landing Pack v1.0.0 — single-file template, no build step, no dependencies.
+  Rebrand in 30 seconds: edit the CSS custom properties in :root below.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northbeam Studio — Design and engineering for products that ship</title>
+<meta name="description" content="Northbeam Studio is a four-person design and engineering studio. We build web products end-to-end: strategy, interface, code, launch.">
+<style>
+:root {
+  --paper: #14120f;            /* warm near-black background */
+  --paper-soft: #1d1a16;       /* raised surfaces */
+  --cream: #f2ede3;            /* primary text */
+  --cream-dim: #b5ac9b;        /* secondary text */
+  --gold: #c9a45c;             /* accent */
+  --gold-soft: #e8d5ae;
+  --line: #35302a;             /* hairlines */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--cream); font-family: var(--sans); line-height: 1.65; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+section { padding: 6rem 0; }
+h1, h2, h3, .display { font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.12; }
+.kicker { font-family: var(--sans); font-size: .75rem; text-transform: uppercase; letter-spacing: .22em; color: var(--gold); margin-bottom: 1.1rem; }
+.lede { color: var(--cream-dim); font-size: 1.05rem; max-width: 52ch; }
+
+/* Nav */
+.nav { position: sticky; top: 0; z-index: 40; background: rgb(20 18 15 / .88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.wordmark { font-family: var(--serif); font-size: 1.25rem; letter-spacing: .02em; }
+.wordmark em { font-style: normal; color: var(--gold); }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; font-size: .9rem; color: var(--cream-dim); }
+.nav-links a:hover { color: var(--cream); }
+.nav-cta { font-size: .9rem; border: 1px solid var(--gold); color: var(--gold); padding: .55rem 1.2rem; border-radius: 2px; transition: background .2s ease, color .2s ease; }
+.nav-cta:hover { background: var(--gold); color: var(--paper); }
+.nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 2px; padding: .5rem .65rem; color: var(--cream); cursor: pointer; }
+
+/* Hero */
+.hero { padding: 8rem 0 6rem; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -55% -10%; height: 70%; background: radial-gradient(50% 60% at 50% 100%, rgb(201 164 92 / .12), transparent 70%); pointer-events: none; }
+.avail { display: inline-flex; align-items: center; gap: .6rem; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-soft); border: 1px solid var(--line); padding: .5rem 1rem; border-radius: 999px; margin-bottom: 2.2rem; }
+.avail .pulse { width: 8px; height: 8px; border-radius: 50%; background: #79c47c; animation: pulse 2.2s infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgb(121 196 124 / .5); } 50% { box-shadow: 0 0 0 6px rgb(121 196 124 / 0); } }
+.hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); line-height: 1.04; max-width: 15ch; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero .lede { margin-top: 1.75rem; }
+.hero-meta { display: flex; gap: 3rem; margin-top: 3.5rem; flex-wrap: wrap; }
+.hero-meta div strong { display: block; font-family: var(--serif); font-size: 1.7rem; color: var(--cream); }
+.hero-meta div span { font-size: .8rem; color: var(--cream-dim); letter-spacing: .08em; text-transform: uppercase; }
+
+/* Services */
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 3.5rem; }
+.service { background: var(--paper); padding: 2.4rem 2.2rem; transition: background .25s ease; }
+.service:hover { background: var(--paper-soft); }
+.service .num { font-family: var(--serif); color: var(--gold); font-size: .95rem; }
+.service h3 { font-size: 1.45rem; margin: .65rem 0 .7rem; }
+.service p { color: var(--cream-dim); font-size: .95rem; max-width: 44ch; }
+
+/* Work */
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.case { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; transition: transform .2s ease, border-color .2s ease; display: flex; flex-direction: column; }
+.case:hover { transform: translateY(-4px); border-color: var(--gold); }
+.case-visual { height: 170px; position: relative; display: grid; place-items: center; }
+.v-fintech { background: linear-gradient(135deg, #1e3a34, #0f1f1c); }
+.v-fintech::after { content: "◈"; font-size: 3rem; color: #5fc8b0; }
+.v-health { background: linear-gradient(135deg, #33231f, #1f1412); }
+.v-health::after { content: "✚"; font-size: 2.7rem; color: #e08f6d; }
+.v-logistics { background: linear-gradient(135deg, #1f2740, #121829); }
+.v-logistics::after { content: "▦"; font-size: 2.7rem; color: #8fa7e8; }
+.case-body { padding: 1.5rem 1.5rem 1.75rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+.case .tag { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.case h3 { font-size: 1.3rem; }
+.case p { color: var(--cream-dim); font-size: .92rem; flex: 1; }
+.case .stat { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-soft); border-top: 1px solid var(--line); padding-top: .9rem; }
+
+/* Process */
+.process { counter-reset: phase; }
+.process-row { display: grid; grid-template-columns: 90px 1fr; gap: 2rem; padding: 2.2rem 0; border-bottom: 1px solid var(--line); }
+.process-row::before { counter-increment: phase; content: "0" counter(phase); font-family: var(--serif); font-size: 2.6rem; color: var(--line); line-height: 1; }
+.process-row:first-child { border-top: 1px solid var(--line); }
+.process-row h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+.process-row p { color: var(--cream-dim); font-size: .95rem; max-width: 62ch; }
+
+/* Packages */
+.pack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.pack { border: 1px solid var(--line); border-radius: 4px; padding: 2.2rem 2rem; display: flex; flex-direction: column; }
+.pack.featured { border-color: var(--gold); background: var(--paper-soft); }
+.pack h3 { font-size: 1.25rem; }
+.pack .price { font-family: var(--serif); font-size: 2rem; color: var(--gold); margin: .8rem 0 .3rem; }
+.pack .price small { font-size: .95rem; color: var(--cream-dim); font-family: var(--sans); }
+.pack ul { list-style: none; margin: 1.4rem 0 2rem; display: grid; gap: .65rem; flex: 1; }
+.pack li { font-size: .92rem; color: var(--cream-dim); padding-left: 1.4rem; position: relative; }
+.pack li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+.btn { display: block; text-align: center; padding: .85rem 1.4rem; border: 1px solid var(--gold); color: var(--gold); border-radius: 2px; font-size: .92rem; transition: background .2s ease, color .2s ease; cursor: pointer; }
+.btn:hover { background: var(--gold); color: var(--paper); }
+.btn.solid { background: var(--gold); color: var(--paper); }
+.btn.solid:hover { background: var(--gold-soft); }
+
+/* Testimonial */
+.big-quote { border-block: 1px solid var(--line); padding: 5.5rem 0; }
+.big-quote blockquote { font-family: var(--serif); font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.35; max-width: 26ch; margin-inline: auto; text-align: center; }
+.big-quote blockquote em { color: var(--gold); font-style: italic; }
+.big-quote cite { display: block; font-family: var(--sans); font-style: normal; font-size: .88rem; color: var(--cream-dim); margin-top: 1.75rem; letter-spacing: .08em; text-transform: uppercase; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-list { list-style: none; display: grid; gap: 1.4rem; margin-top: 2.5rem; }
+.contact-list li { display: flex; gap: 1rem; align-items: baseline; }
+.contact-list .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; color: var(--gold); width: 84px; flex: none; }
+.contact-list a { border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.contact-list a:hover { border-color: var(--gold); color: var(--gold-soft); }
+form { display: grid; gap: 1.1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+label { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; color: var(--cream-dim); display: block; margin-bottom: .45rem; }
+input, textarea, select { width: 100%; background: var(--paper-soft); border: 1px solid var(--line); border-radius: 2px; padding: .85rem 1rem; color: var(--cream); font: inherit; font-size: .95rem; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+textarea { min-height: 120px; resize: vertical; }
+form .btn { margin-top: .5rem; }
+
+/* Footer */
+footer.site { border-top: 1px solid var(--line); padding: 2.5rem 0; }
+.foot-inner { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; font-size: .85rem; color: var(--cream-dim); }
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .work-grid, .pack-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-meta { gap: 2rem; }
+}
+@media (max-width: 700px) {
+  .nav-links, .nav .nav-cta { display: none; }
+  .nav-toggle { display: block; }
+  .nav-open .nav-links { display: flex; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 1.1rem; background: var(--paper); border-bottom: 1px solid var(--line); padding: 1.4rem 1.4rem 2rem; }
+  .process-row { grid-template-columns: 1fr; gap: .5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  section { padding: 4rem 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="container nav-inner">
+    <a class="wordmark" href="#top">Northbeam<em>&middot;</em>Studio</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#packages">Packages</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Start a project</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <p class="avail"><span class="pulse" aria-hidden="true"></span>Booking projects for December</p>
+    <h1>A four-person studio for products that need to <em>ship</em>.</h1>
+    <p class="lede">Northbeam is a design and engineering studio. We take web products from strategy to launched code — no handoffs, no agencies-within-agencies, no sixteen-person calls about a button.</p>
+    <div class="hero-meta">
+      <div><strong>11 yrs</strong><span>Average experience</span></div>
+      <div><strong>40+</strong><span>Products shipped</span></div>
+      <div><strong>4 people</strong><span>You always know who's building</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="container">
+    <p class="kicker">Services</p>
+    <h2>End-to-end, or exactly the piece you're missing</h2>
+    <div class="services-grid">
+      <div class="service">
+        <span class="num">01</span>
+        <h3>Product strategy</h3>
+        <p>Positioning, scope, and a roadmap you can actually defend. We pressure-test the idea before anyone writes code — some of our best projects ended with a smaller, better product than planned.</p>
+      </div>
+      <div class="service">
+        <span class="num">02</span>
+        <h3>Interface design</h3>
+        <p>Design systems, not mockup theater. We design in the browser from week one, so what you approve is what ships — down to the loading states and empty screens.</p>
+      </div>
+      <div class="service">
+        <span class="num">03</span>
+        <h3>Engineering</h3>
+        <p>Type-safe frontends, boring-and-reliable backends, and CI you'll never think about. We leave you with a codebase your next hire can read, not a monument to us.</p>
+      </div>
+      <div class="service">
+        <span class="num">04</span>
+        <h3>Launch &amp; iteration</h3>
+        <p>Analytics wired before launch day, a first-iteration plan, and 30 days of on-call support after go-live. Shipping is the start of the work, not the end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:2rem">
+  <div class="container">
+    <p class="kicker">Selected work</p>
+    <h2>Three we're allowed to talk about</h2>
+    <div class="work-grid">
+      <article class="case">
+        <div class="case-visual v-fintech" role="img" aria-label="Case visual: green geometric emblem on dark teal"></div>
+        <div class="case-body">
+          <span class="tag">Fintech · Rebuild</span>
+          <h3>Halcyon</h3>
+          <p>Rebuilt a laggy banking dashboard as a real-time web app. Same team, same API constraints, 6× faster time-to-interactive.</p>
+          <p class="stat">−72% support tickets in quarter one</p>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-visual v-health" role="img" aria-label="Case visual: warm cross emblem on dark brown"></div>
+        <div class="case-body">
+          <span class="tag">Health · 0→1</span>
+          <h3>Kindred Care</h3>
+          <p>From pitch deck to launched telehealth product in fourteen weeks — booking, video visits, and a clinician-facing console.</p>
+          <p class="stat">8,400 visits booked in month three</p>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-visual v-logistics" role="img" aria-label="Case visual: blue grid emblem on dark navy"></div>
+        <div class="case-body">
+          <span class="tag">Logistics · Platform</span>
+          <h3>Meridian Freight</h3>
+          <p>A dispatch platform replacing six spreadsheets and a fax machine. Yes, a fax machine. It's still in production.</p>
+          <p class="stat">31 deploys in their first month alone</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <p class="kicker">Process</p>
+    <h2>How a project actually runs</h2>
+    <div class="process" style="margin-top:3rem">
+      <div class="process-row">
+        <div>
+          <h3>Week zero — the hard conversation</h3>
+          <p>We scope in writing: what's in, what's out, what it costs, and what would make us tell you to stop. Fixed price, fixed scope, one page. If the fit isn't right we say so and point you elsewhere — we keep a list of studios we trust.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div>
+          <h3>Weeks 1–2 — design in the open</h3>
+          <p>Wireframes become a clickable prototype in days. You're in the file, not in a status meeting. We converge on structure first and polish second, because polish on the wrong structure is waste.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div>
+          <h3>Weeks 3–8 — build in public</h3>
+          <p>Every Thursday: a staging link with what changed, what broke, and what we learned. No surprises in week eight, because there were no surprises in week three.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div>
+          <h3>Launch + 30 — handover that holds</h3>
+          <p>Documentation, a walkthrough recorded for your future hires, and 30 days of on-call while the product meets reality. Then we get out of the way — or stay on a light retainer if you want us around.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="container">
+    <p class="kicker">Packages</p>
+    <h2>Three ways to work with us</h2>
+    <div class="pack-grid">
+      <div class="pack">
+        <h3>Design sprint</h3>
+        <div class="price">$9.5k <small>fixed</small></div>
+        <ul>
+          <li>Two weeks, full team attention</li>
+          <li>Positioning + scope document</li>
+          <li>Clickable prototype</li>
+          <li>Build-ready design system</li>
+        </ul>
+        <a class="btn" href="#contact">Enquire</a>
+      </div>
+      <div class="pack featured">
+        <h3>The build</h3>
+        <div class="price">from $48k <small>fixed</small></div>
+        <ul>
+          <li>Everything in the sprint</li>
+          <li>Full product, launched</li>
+          <li>Weekly staging demos</li>
+          <li>30 days post-launch support</li>
+          <li>Codebase you own, fully</li>
+        </ul>
+        <a class="btn solid" href="#contact">Start the conversation</a>
+      </div>
+      <div class="pack">
+        <h3>Retainer</h3>
+        <div class="price">$12k <small>/ month</small></div>
+        <ul>
+          <li>Ongoing iteration after launch</li>
+          <li>Priority in our calendar</li>
+          <li>Monthly strategy session</li>
+          <li>Cancel monthly, no drama</li>
+        </ul>
+        <a class="btn" href="#contact">Enquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="big-quote" aria-label="Testimonial">
+  <div class="container">
+    <blockquote>
+      “They told us our original plan would fail — <em>in the first meeting</em>. Six months later we shipped the smaller thing they argued for, and it's the reason we're still in business.”
+      <cite>— Founder, logistics platform (named on request)</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-grid">
+    <div>
+      <p class="kicker">Contact</p>
+      <h2>Tell us what you're building</h2>
+      <p class="lede" style="margin-top:1rem">A paragraph is plenty. We reply within two business days — with questions, not a sales deck.</p>
+      <ul class="contact-list">
+        <li><span class="label">Email</span><a href="mailto:hello@northbeam.studio">hello@northbeam.studio</a></li>
+        <li><span class="label">Studio</span><span>Lisbon &amp; remote, UTC±2</span></li>
+        <li><span class="label">Elsewhere</span><a href="#top">Are.na</a> · <a href="#top">GitHub</a></li>
+      </ul>
+    </div>
+    <form onsubmit="event.preventDefault(); this.reportValidity();">
+      <div class="form-row">
+        <div>
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+      </div>
+      <div>
+        <label for="f-budget">Budget range</label>
+        <select id="f-budget" name="budget">
+          <option>Under $10k</option>
+          <option selected>$10k – $50k</option>
+          <option>$50k – $100k</option>
+          <option>$100k+</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-msg">What are you building?</label>
+        <textarea id="f-msg" name="message" required></textarea>
+      </div>
+      <button class="btn solid" type="submit">Send it</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container foot-inner">
+    <span>© 2026 Northbeam Studio Lda.</span>
+    <span>Slow by choice, shipping by habit.</span>
+  </div>
+</footer>
+
+<script>
+var navToggle = document.querySelector('.nav-toggle');
+var nav = document.querySelector('.nav');
+navToggle.addEventListener('click', function () {
+  var open = nav.classList.toggle('nav-open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+  Template: Personal Portfolio — "Alex Chen"
+  Landing Pack v1.0.0 — single-file template, no build step, no dependencies.
+  Rebrand in 30 seconds: edit the CSS custom properties in :root below.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Chen — Software engineer &amp; toolmaker</title>
+<meta name="description" content="Alex Chen builds fast, quiet software for the web. Currently engineering at Fathom, previously infra at Kite.">
+<style>
+:root {
+  --bg: #fcfcfc;               /* page */
+  --ink: #111111;              /* text */
+  --ink-soft: #6b6b6b;         /* secondary */
+  --line: #e7e7e7;             /* rules */
+  --accent: #111111;            /* monochrome: accent is black; swap for any color */
+  --accent-ink: #fcfcfc;        /* text on accent */
+  --radius: 6px;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(860px, 100% - 2.5rem); margin-inline: auto; }
+section { padding: 4.5rem 0; }
+h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .18em; color: var(--ink-soft); margin-bottom: 2.2rem; font-weight: 600; }
+.mono { font-family: var(--mono); font-size: .82rem; color: var(--ink-soft); }
+
+/* Nav */
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 0; font-size: .9rem; }
+.nav .name { font-weight: 700; letter-spacing: -0.01em; }
+.nav ul { display: flex; gap: 1.6rem; list-style: none; color: var(--ink-soft); }
+.nav ul a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* Hero */
+.hero { padding: 5rem 0 4rem; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: start; border-bottom: 1px solid var(--line); }
+.hero h1 { font-size: clamp(1.9rem, 4.6vw, 2.9rem); line-height: 1.12; letter-spacing: -0.03em; max-width: 21ch; margin-bottom: 1.4rem; }
+.hero h1 em { font-style: normal; box-shadow: inset 0 -0.32em 0 #e3e3e3; }
+.hero p { color: var(--ink-soft); max-width: 52ch; margin-bottom: 2rem; font-size: 1.04rem; }
+.hero-links { display: flex; gap: 1.4rem; font-family: var(--mono); font-size: .85rem; }
+.hero-links a { border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.hero-links a:hover { border-color: var(--ink); }
+.avatar { width: 108px; height: 108px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-size: 2rem; font-weight: 700; letter-spacing: .02em; flex: none; }
+
+/* Skills */
+.tags { display: flex; flex-wrap: wrap; gap: .55rem; }
+.tag { font-family: var(--mono); font-size: .78rem; border: 1px solid var(--line); border-radius: 999px; padding: .38rem .85rem; color: var(--ink-soft); }
+.tag:hover { border-color: var(--ink); color: var(--ink); }
+
+/* Projects */
+.projects { display: grid; gap: 1px; background: var(--line); border-block: 1px solid var(--line); }
+.project { background: var(--bg); display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; padding: 2.2rem 0; align-items: baseline; }
+.project h3 { font-size: 1.35rem; letter-spacing: -0.02em; margin-bottom: .45rem; }
+.project h3 .arrow { opacity: 0; transition: opacity .15s ease, transform .15s ease; display: inline-block; }
+.project:hover h3 .arrow { opacity: 1; transform: translateX(4px); }
+.project p { color: var(--ink-soft); font-size: .97rem; max-width: 48ch; }
+.project .meta { text-align: right; }
+.project .meta .stat { display: block; font-family: var(--mono); font-size: .82rem; color: var(--ink); font-weight: 600; }
+.project .meta .yr { color: var(--ink-soft); }
+
+/* Timeline */
+.timeline { border-left: 1px solid var(--line); margin-left: .4rem; }
+.job { position: relative; padding: 0 0 2.4rem 2rem; }
+.job:last-child { padding-bottom: 0; }
+.job::before { content: ""; position: absolute; left: -4.5px; top: .45rem; width: 8px; height: 8px; border-radius: 50%; background: var(--bg); border: 2px solid var(--ink); }
+.job .role { font-weight: 700; }
+.job .org { color: var(--ink-soft); font-weight: 400; }
+.job .when { font-family: var(--mono); font-size: .78rem; color: var(--ink-soft); display: block; margin-bottom: .5rem; }
+.job p { color: var(--ink-soft); font-size: .95rem; max-width: 56ch; }
+
+/* Contact / footer */
+.contact { border-top: 1px solid var(--line); padding: 3.5rem 0 4.5rem; }
+.contact .big { font-size: clamp(1.4rem, 3.4vw, 2rem); letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+.contact a.mail { box-shadow: inset 0 -0.32em 0 #e3e3e3; }
+.contact a.mail:hover { background: var(--ink); color: var(--bg); }
+footer { padding: 1.6rem 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; }
+  .avatar { order: -1; }
+  .project { grid-template-columns: 1fr; gap: .5rem; }
+  .project .meta { text-align: left; }
+  .nav ul { gap: 1rem; }
+  section { padding: 3.2rem 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav class="nav" aria-label="Main">
+    <a class="name" href="#top">alex chen</a>
+    <ul>
+      <li><a href="#work">work</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+</div>
+
+<header class="hero container" id="top">
+  <div>
+    <h1>I build <em>fast, quiet software</em> for the web.</h1>
+    <p>Software engineer in Vancouver. Nine years of shipping things that stay out of the user's way — infra at Kite, product engineering at Fathom, and a small shelf of open-source tools used by people I'll never meet. I care about performance budgets, boring reliability, and deleting code.</p>
+    <div class="hero-links">
+      <a href="#contact">email</a>
+      <a href="#work">github</a>
+      <a href="#work">rss</a>
+      <a href="#work">cv.pdf</a>
+    </div>
+  </div>
+  <div class="avatar" role="img" aria-label="Portrait placeholder with initials AC">AC</div>
+</header>
+
+<main class="container">
+  <section id="skills" aria-label="Skills">
+    <h2>Work with</h2>
+    <div class="tags">
+      <span class="tag">TypeScript</span><span class="tag">Rust</span><span class="tag">Go</span><span class="tag">React</span><span class="tag">Node</span><span class="tag">Postgres</span><span class="tag">SQLite</span><span class="tag">distributed systems</span><span class="tag">observability</span><span class="tag">CI/CD</span><span class="tag">a11y</span>
+    </div>
+  </section>
+
+  <section id="work" style="padding-top:1rem">
+    <h2>Selected work</h2>
+    <div class="projects">
+      <article class="project">
+        <div>
+          <h3><a href="#work">tinybench <span class="arrow" aria-hidden="true">→</span></a></h3>
+          <p>A zero-dependency benchmark runner for Node. Started as a weekend complaint about test flakiness; now the runner behind three frameworks I don't maintain.</p>
+        </div>
+        <div class="meta"><span class="stat">2.1k ★</span><span class="mono yr">open source · 2023—</span></div>
+      </article>
+      <article class="project">
+        <div>
+          <h3><a href="#work">Flatfile <span class="arrow" aria-hidden="true">→</span></a></h3>
+          <p>CSV importer that streams instead of loading. Handles the 2GB spreadsheets real customers actually upload, at 60fps, in the browser.</p>
+        </div>
+        <div class="meta"><span class="stat">14kb gzipped</span><span class="mono yr">library · 2024</span></div>
+      </article>
+      <article class="project">
+        <div>
+          <h3><a href="#work">Kite query planner <span class="arrow" aria-hidden="true">→</span></a></h3>
+          <p>Rewrote the planner's cost model for time-series workloads. Cut p99 query latency 5× for the 40 largest clusters without anyone changing their schemas.</p>
+        </div>
+        <div class="meta"><span class="stat">5× p99</span><span class="mono yr">at Kite · 2021—2023</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="job">
+        <span class="when">2023 — now</span>
+        <span class="role">Senior Engineer · <span class="org">Fathom Analytics</span></span>
+        <p>Product engineering on a privacy-first analytics platform. Own the ingestion path (about 4B events/month) and spend an unreasonable amount of time making it cheaper to run.</p>
+      </div>
+      <div class="job">
+        <span class="when">2021 — 2023</span>
+        <span class="role">Infrastructure Engineer · <span class="org">Kite (acquired)</span></span>
+        <p>Query planning and storage for a time-series database. On-call scars, war stories, and the planner rewrite above.</p>
+      </div>
+      <div class="job">
+        <span class="when">2017 — 2021</span>
+        <span class="role">Engineer → Tech Lead · <span class="org">Meridian Freight</span></span>
+        <p>First of four hires. Built the dispatch platform that replaced six spreadsheets and a fax machine; it's still in production.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="big">The fastest way to reach me is <a class="mail" href="mailto:alex@alexchen.dev">alex@alexchen.dev</a>.</p>
+    <p class="mono">I read everything. I reply to most things. I'm not currently looking, but interesting problems are always welcome.</p>
+  </section>
+</main>
+
+<div class="container">
+  <footer>
+    <span class="mono">© 2026 Alex Chen</span>
+    <span class="mono">Built by hand. No trackers, no cookies, 12kb.</span>
+  </footer>
+</div>
+
+</body>
+</html>

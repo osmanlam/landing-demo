@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+  Template: Demo Hub — Landing Pack index
+  Landing Pack v1.0.0 — single-file template, no build step, no dependencies.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Pack — 5 production-ready templates</title>
+<meta name="description" content="Five single-file HTML landing page templates: SaaS, agency, product sales page, portfolio, and waitlist. No build step, no dependencies.">
+<style>
+:root {
+  --bg: #0f1115;
+  --card: #171a21;
+  --ink: #eef1f6;
+  --ink-soft: #98a0b0;
+  --line: #262b36;
+  --accent: #7c9cff;
+  --accent-soft: rgb(124 156 255 / .12);
+  --radius: 16px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.6; }
+.wrap { width: min(980px, 100% - 2.5rem); margin-inline: auto; padding: 4.5rem 0 5rem; }
+header.hero { text-align: center; margin-bottom: 3.5rem; }
+.pill { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: .45rem 1.1rem; margin-bottom: 1.4rem; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.sub { color: var(--ink-soft); max-width: 52ch; margin: 0 auto; font-size: 1.06rem; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .18s ease, border-color .18s ease; display: flex; flex-direction: column; }
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.thumb { height: 158px; display: grid; place-items: center; font-size: 2rem; position: relative; overflow: hidden; }
+.thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgb(0 0 0 / .25)); }
+.t-saas { background: linear-gradient(135deg, #4f46e5, #06b6d4); }
+.t-agency { background: linear-gradient(135deg, #14120f, #c9a45c 130%); }
+.t-product { background: linear-gradient(135deg, #e2622b, #faf5ec 160%); }
+.t-personal { background: linear-gradient(135deg, #fcfcfc, #b9b9b9); color: #111; }
+.t-waitlist { background: linear-gradient(135deg, #8b5cf6, #22d3ee); color: #0b0a1a; }
+.card-body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+.card-body h2 { font-size: 1.15rem; letter-spacing: -0.01em; }
+.card-body p { color: var(--ink-soft); font-size: .93rem; flex: 1; }
+.card-body a { color: var(--accent); font-weight: 600; font-size: .93rem; }
+.card-body a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.notes { margin-top: 3.5rem; text-align: center; color: var(--ink-soft); font-size: .9rem; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <span class="pill">Landing Pack · v1.0.0</span>
+    <h1>Five production-ready landing pages.<br>One file each. Zero dependencies.</h1>
+    <p class="sub">Every template is a single self-contained HTML file — no build step, no CDNs, no fonts to download. Colors are CSS variables, so rebranding takes 30 seconds.</p>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="saas.html">
+      <div class="thumb t-saas" aria-hidden="true">📊</div>
+      <div class="card-body">
+        <h2>SaaS Landing — “Meridian”</h2>
+        <p>Hero with a CSS dashboard mockup, features, pricing tiers, testimonials, working FAQ accordion. Clean light theme, indigo accent.</p>
+        <span>Preview →</span>
+      </div>
+    </a>
+    <a class="card" href="agency.html">
+      <div class="thumb t-agency" aria-hidden="true">✒️</div>
+      <div class="card-body">
+        <h2>Agency / Studio — “Northbeam”</h2>
+        <p>Dark editorial design with serif display type. Services, case studies, process, package pricing, contact form with availability badge.</p>
+        <span>Preview →</span>
+      </div>
+    </a>
+    <a class="card" href="product.html">
+      <div class="thumb t-product" aria-hidden="true">🔥</div>
+      <div class="card-body">
+        <h2>Digital Product Sales — “ShipLog”</h2>
+        <p>Long-form conversion page: problem/solution, features, testimonials, pricing box with guarantee, FAQ, and a sticky buy bar.</p>
+        <span>Preview →</span>
+      </div>
+    </a>
+    <a class="card" href="personal.html">
+      <div class="thumb t-personal" aria-hidden="true">🅰️</div>
+      <div class="card-body">
+        <h2>Personal Portfolio — “Alex Chen”</h2>
+        <p>Minimal monochrome typography-led portfolio: projects, experience timeline, skills, contact. Quiet, fast, 12kb vibes.</p>
+        <span>Preview →</span>
+      </div>
+    </a>
+    <a class="card" href="waitlist.html" style="grid-column: 1 / -1; max-width: 480px; margin-inline: auto; width: 100%;">
+      <div class="thumb t-waitlist" aria-hidden="true">🛰️</div>
+      <div class="card-body">
+        <h2>Waitlist — “Pulseboard”</h2>
+        <p>Centered hero with animated aurora gradient, working email capture (demo submit), live counter, feature bullets.</p>
+        <span>Preview →</span>
+      </div>
+    </a>
+  </div>
+
+  <p class="notes">Replace fictional names and copy with yours · swap the :root color variables to rebrand · open any file directly in a browser.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+  Template: SaaS Landing — "Meridian"
+  Landing Pack v1.0.0 — single-file template, no build step, no dependencies.
+  Rebrand in 30 seconds: edit the CSS custom properties in :root below.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian — Analytics that answer questions, not just chart them</title>
+<meta name="description" content="Meridian turns product analytics into plain-English answers. Ask a question, get the number, the trend, and why it moved.">
+<style>
+:root {
+  --brand: #4f46e5;          /* primary indigo */
+  --brand-dark: #3730a3;
+  --brand-soft: #eef2ff;
+  --ink: #0f172a;            /* near-black text */
+  --ink-soft: #475569;       /* secondary text */
+  --line: #e2e8f0;
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --accent: #06b6d4;
+  --radius: 14px;
+  --shadow: 0 10px 30px -12px rgb(15 23 42 / 0.18);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--ink); background: var(--bg); line-height: 1.6; }
+img, svg { display: block; max-width: 100%; }
+a { color: var(--brand); text-decoration: none; }
+.container { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+section { padding: 5rem 0; }
+.section-alt { background: var(--bg-alt); }
+.eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: .75rem; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: .75rem; }
+.section-sub { color: var(--ink-soft); max-width: 46ch; }
+.center { text-align: center; }
+.center .section-sub { margin-inline: auto; }
+
+/* Buttons */
+.btn { display: inline-block; padding: .8rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: .95rem; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.btn-primary { background: var(--brand); color: #fff; box-shadow: var(--shadow); }
+.btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
+
+/* Nav */
+.nav { position: sticky; top: 0; z-index: 50; background: rgb(255 255 255 / .85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: .5rem; font-weight: 800; font-size: 1.1rem; color: var(--ink); letter-spacing: -0.02em; }
+.logo-mark { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), var(--accent)); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--ink-soft); font-weight: 500; font-size: .93rem; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { display: flex; gap: .75rem; align-items: center; }
+.nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: .45rem .6rem; cursor: pointer; color: var(--ink); }
+.nav-toggle svg { width: 20px; height: 20px; }
+
+/* Hero */
+.hero { padding: 6rem 0 4rem; background:
+  radial-gradient(60rem 30rem at 85% -10%, var(--brand-soft), transparent 60%),
+  radial-gradient(40rem 24rem at 0% 110%, #ecfeff, transparent 55%); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3.5rem; align-items: center; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+.hero h1 em { font-style: normal; color: var(--brand); }
+.hero p { color: var(--ink-soft); font-size: 1.12rem; max-width: 46ch; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.hero-note { font-size: .85rem; color: var(--ink-soft); }
+
+/* Dashboard mockup (pure CSS) */
+.dash { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transform: rotate(-.5deg); }
+.dash-top { display: flex; gap: .4rem; align-items: center; padding: .75rem 1rem; border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot:nth-child(1) { background: #f87171; } .dot:nth-child(2) { background: #fbbf24; } .dot:nth-child(3) { background: #34d399; }
+.dash-url { margin-left: .75rem; font-size: .72rem; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: .15rem .6rem; }
+.dash-body { padding: 1.25rem; display: grid; gap: 1rem; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.kpi { border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem; }
+.kpi .label { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); }
+.kpi .value { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
+.kpi .delta { font-size: .75rem; font-weight: 700; color: #059669; }
+.chart { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; }
+.chart-bars { display: flex; align-items: flex-end; gap: 6px; height: 110px; margin-top: .75rem; }
+.chart-bars i { flex: 1; background: linear-gradient(180deg, var(--brand), #a5b4fc); border-radius: 4px 4px 0 0; }
+
+/* Logos strip */
+.logos { padding: 2rem 0; border-block: 1px solid var(--line); }
+.logos p { text-align: center; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-soft); margin-bottom: 1.25rem; }
+.logo-row { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.logo-row span { font-weight: 800; font-size: 1.05rem; letter-spacing: .02em; color: #94a3b8; font-style: italic; }
+
+/* Features */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; transition: border-color .15s ease, transform .15s ease; }
+.card:hover { border-color: var(--brand); transform: translateY(-3px); }
+.card .icon { width: 42px; height: 42px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; margin-bottom: 1rem; }
+.card h3 { font-size: 1.08rem; margin-bottom: .5rem; letter-spacing: -0.01em; }
+.card p { color: var(--ink-soft); font-size: .95rem; }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; counter-reset: step; }
+.step { position: relative; padding-top: 1rem; }
+.step::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-size: .9rem; font-weight: 800; color: var(--brand); border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: .3rem .8rem; display: inline-block; margin-bottom: 1rem; }
+.step h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+.step p { color: var(--ink-soft); font-size: .95rem; }
+
+/* Pricing */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; align-items: stretch; }
+.price-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 2rem 1.75rem; display: flex; flex-direction: column; }
+.price-card.featured { border: 2px solid var(--brand); box-shadow: var(--shadow); position: relative; }
+.price-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--brand); color: #fff; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .25rem .8rem; border-radius: 999px; }
+.price-card h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); }
+.price { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin: .5rem 0; }
+.price span { font-size: .95rem; font-weight: 500; color: var(--ink-soft); }
+.price-card ul { list-style: none; margin: 1.25rem 0 1.75rem; display: grid; gap: .6rem; flex: 1; }
+.price-card li { font-size: .93rem; color: var(--ink-soft); padding-left: 1.5rem; position: relative; }
+.price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--brand); font-weight: 800; }
+.price-card .btn { text-align: center; }
+
+/* Testimonials */
+.quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.quote { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
+.quote p { font-size: .98rem; color: var(--ink); }
+.quote p::before { content: "“"; color: var(--brand); font-size: 1.6rem; font-weight: 800; line-height: 0; margin-right: 2px; }
+.quote footer { margin-top: 1.25rem; display: flex; align-items: center; gap: .75rem; }
+.avatar { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-size: .78rem; font-weight: 800; color: #fff; }
+.quote cite { font-style: normal; font-size: .88rem; font-weight: 700; display: block; }
+.quote cite small { display: block; font-weight: 400; color: var(--ink-soft); }
+
+/* FAQ */
+.faq { max-width: 720px; margin: 3rem auto 0; }
+.faq-item { border: 1px solid var(--line); border-radius: 12px; background: #fff; margin-bottom: .75rem; overflow: hidden; }
+.faq-q { width: 100%; background: none; border: none; text-align: left; padding: 1.1rem 1.25rem; font: inherit; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--ink); }
+.faq-q:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.faq-q .chev { transition: transform .2s ease; color: var(--brand); flex: none; }
+.faq-item.open .chev { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+.faq-a p { padding: 0 1.25rem 1.1rem; color: var(--ink-soft); font-size: .95rem; }
+
+/* Final CTA */
+.final-cta { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; text-align: center; padding: 4.5rem 0; }
+.final-cta h2 { color: #fff; }
+.final-cta p { color: #e0e7ff; max-width: 44ch; margin: 0 auto 2rem; }
+.final-cta .btn { background: #fff; color: var(--brand-dark); }
+
+/* Footer */
+footer.site { padding: 3rem 0; border-top: 1px solid var(--line); }
+.foot-grid { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.foot-col h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); margin-bottom: .9rem; }
+.foot-col ul { list-style: none; display: grid; gap: .5rem; }
+.foot-col a { color: var(--ink-soft); font-size: .92rem; }
+.foot-col a:hover { color: var(--ink); }
+.foot-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: var(--ink-soft); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .grid-3, .steps, .pricing-grid, .quote-grid { grid-template-columns: 1fr; }
+  .dash { transform: none; }
+}
+@media (max-width: 700px) {
+  .nav-links, .nav-cta .btn-ghost { display: none; }
+  .nav-toggle { display: block; }
+  .nav-open .nav-links { display: flex; position: absolute; top: 64px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; padding: 1rem 1.25rem; gap: 1rem; }
+  .kpis { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+  section { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="container nav-inner">
+    <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>Meridian</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#pricing">Sign in</a>
+      <a class="btn btn-primary" href="#pricing">Start free</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <h1>Analytics that <em>answer questions</em>, not just chart them.</h1>
+      <p>Meridian sits on your product data and speaks plain English. Ask “why did activation dip last week?” and get the number, the trend, and the segments that moved — in seconds, not sprint-length digs.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#pricing">Start free — 14 days</a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <p class="hero-note">No credit card. Connects to Segment, PostHog, or your warehouse in one click.</p>
+    </div>
+    <div class="dash" role="img" aria-label="Screenshot of the Meridian analytics dashboard showing KPIs and a trend chart">
+      <div class="dash-top">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="dash-url">meridian.app/ask</span>
+      </div>
+      <div class="dash-body">
+        <div class="kpis">
+          <div class="kpi"><div class="label">Activation</div><div class="value">42.8%</div><div class="delta">▲ 3.1 pts</div></div>
+          <div class="kpi"><div class="label">Week 4 retention</div><div class="value">31.2%</div><div class="delta">▲ 0.8 pts</div></div>
+          <div class="kpi"><div class="label">Time to value</div><div class="value">6m 12s</div><div class="delta">▼ 48s</div></div>
+        </div>
+        <div class="chart">
+          <strong style="font-size:.85rem;color:var(--ink-soft)">Signups · last 12 weeks</strong>
+          <div class="chart-bars" aria-hidden="true">
+            <i style="height:35%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:50%"></i><i style="height:47%"></i><i style="height:58%"></i><i style="height:55%"></i><i style="height:64%"></i><i style="height:60%"></i><i style="height:72%"></i><i style="height:78%"></i><i style="height:90%"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="logos">
+  <div class="container">
+    <p>Trusted by product teams at</p>
+    <div class="logo-row" aria-label="Customer logos">
+      <span>Northwind</span><span>Loopline</span><span>Cobalt&nbsp;Labs</span><span>Fernway</span><span>Ultra&nbsp;Mini</span>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="container center">
+    <p class="eyebrow">Features</p>
+    <h2>Everything you ask a data scientist, minus the queue</h2>
+    <p class="section-sub">Meridian is built for product managers who need answers today, with enough rigor that your data team will actually trust the output.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3>Ask in plain English</h3>
+        <p>“Which plan converts best from trial?” gets you the answer with the query behind it — inspectable, reusable, and shareable with one link.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Anomaly explanations</h3>
+        <p>When a metric moves, Meridian decomposes it by segment, platform, and cohort and tells you which slice is responsible — automatically.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        </div>
+        <h3>Alerts with context</h3>
+        <p>Slack alerts that arrive with the why attached: the affected segment, the likely cause, and the two follow-up questions worth asking.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+        </div>
+        <h3>Warehouse-native</h3>
+        <p>Runs on Snowflake, BigQuery, or Postgres. Your data never leaves your warehouse — Meridian queries it, caches the aggregates, nothing else.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Metric governance</h3>
+        <p>One definition of “active user”, versioned and enforced. When marketing and finance quote different numbers, Meridian settles it.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+        </div>
+        <h3>Board-ready reports</h3>
+        <p>One click turns any answer into a formatted monthly summary — trends, movers, and open questions — that your CEO will actually read.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section-alt">
+  <div class="container center">
+    <p class="eyebrow">How it works</p>
+    <h2>Live in an afternoon</h2>
+    <p class="section-sub">No SQL to write, no events to relabel, no implementation project.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Connect your source</h3>
+        <p>Point Meridian at your warehouse, Segment, or PostHog. It reads your schema and proposes a metric layer you approve — usually under an hour, including review.</p>
+      </div>
+      <div class="step">
+        <h3>Ask your first question</h3>
+        <p>Type like you'd Slack a colleague. Meridian writes the query, shows its work, and saves every answer as a reusable, versioned metric.</p>
+      </div>
+      <div class="step">
+        <h3>Put it on autopilot</h3>
+        <p>Subscribe metrics to Slack or email. Meridian watches for movement, explains anomalies, and nudges you only when something deserves attention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container center">
+    <p class="eyebrow">Pricing</p>
+    <h2>Simple, per-workspace pricing</h2>
+    <p class="section-sub">Every plan includes unlimited questions, unlimited teammates, and the full metric library. You only pay for data volume.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <div class="price">$0<span>/month</span></div>
+        <ul>
+          <li>Up to 5M events/mo</li>
+          <li>1 data source</li>
+          <li>30-day history</li>
+          <li>Community support</li>
+        </ul>
+        <a class="btn btn-ghost" href="#">Start free</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-badge">Most popular</span>
+        <h3>Growth</h3>
+        <div class="price">$99<span>/month</span></div>
+        <ul>
+          <li>Up to 100M events/mo</li>
+          <li>Unlimited sources</li>
+          <li>Unlimited history</li>
+          <li>Anomaly alerts with context</li>
+          <li>Priority support</li>
+        </ul>
+        <a class="btn btn-primary" href="#">Start 14-day trial</a>
+      </div>
+      <div class="price-card">
+        <h3>Scale</h3>
+        <div class="price">Custom</div>
+        <ul>
+          <li>Unlimited events</li>
+          <li>SSO &amp; SCIM</li>
+          <li>VPC / on-prem deployment</li>
+          <li>Dedicated success manager</li>
+          <li>99.9% uptime SLA</li>
+        </ul>
+        <a class="btn btn-ghost" href="#">Talk to sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" aria-label="Testimonials">
+  <div class="container center">
+    <p class="eyebrow">Customers</p>
+    <h2>What teams say after week one</h2>
+    <div class="quote-grid">
+      <blockquote class="quote">
+        <p>We killed our weekly metrics meeting. Not downsized — killed. The answer to ‘what happened to signups' used to take a day; now it arrives in Slack before anyone asks.</p>
+        <footer>
+          <span class="avatar" style="background:#0ea5e9" aria-hidden="true">DK</span>
+          <cite>Dana Kwon<small>Head of Product, Loopline</small></cite>
+        </footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>Our data team went from ticket-takers to actually doing data science. Meridian absorbed the routine questions, and the metric layer ended three departments arguing about three numbers.</p>
+        <footer>
+          <span class="avatar" style="background:#8b5cf6" aria-hidden="true">MR</span>
+          <cite>Marcus Reyes<small>VP Data, Northwind</small></cite>
+        </footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>The anomaly explanations are the killer feature. It flagged a payments drop at 2am with the cause segment attached — our on-call fixed it before the East Coast woke up.</p>
+        <footer>
+          <span class="avatar" style="background:#f59e0b" aria-hidden="true">SA</span>
+          <cite>Sofia Almeida<small>CTO, Fernway</small></cite>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container center">
+    <p class="eyebrow">FAQ</p>
+    <h2>Questions, answered</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Do I need to change how I track events?<span class="chev" aria-hidden="true">▾</span></button>
+        <div class="faq-a"><p>No. Meridian reads the events you already send. If naming is inconsistent, the metric-layer step proposes aliases that you approve once — you don't touch your codebase.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Where does my data live?<span class="chev" aria-hidden="true">▾</span></button>
+        <div class="faq-a"><p>In your warehouse, always. Meridian issues queries and caches aggregates only. Scale plans can run fully inside your VPC if nothing should leave your network.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How accurate are the plain-English answers?<span class="chev" aria-hidden="true">▾</span></button>
+        <div class="faq-a"><p>Every answer ships with the exact SQL that produced it and the metric definitions used — so you can verify anything in one click. If a question is ambiguous, Meridian states its interpretation before answering rather than guessing silently.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What happens when the trial ends?<span class="chev" aria-hidden="true">▾</span></button>
+        <div class="faq-a"><p>You drop to the free Starter plan automatically — no charges, no lockout. Your metric library and saved answers stay intact.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2>Stop digging. Start asking.</h2>
+    <p>Connect your first data source today and get answers to three questions you've been putting off. It takes about ten minutes.</p>
+    <a class="btn" href="#pricing">Start free — 14 days</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>Meridian</a>
+        <p style="color:var(--ink-soft);font-size:.9rem;margin-top:.75rem;max-width:26ch">Analytics that answer questions, not just chart them.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <ul><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#">Changelog</a></li><li><a href="#">Security</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">DPA</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Meridian Analytics, Inc.</span>
+      <span>Made for teams that hate waiting for answers.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav
+var navToggle = document.querySelector('.nav-toggle');
+var nav = document.querySelector('.nav');
+navToggle.addEventListener('click', function () {
+  var open = nav.classList.toggle('nav-open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+
+// FAQ accordion (one open at a time)
+document.querySelectorAll('.faq-item').forEach(function (item) {
+  var btn = item.querySelector('.faq-q');
+  var panel = item.querySelector('.faq-a');
+  btn.addEventListener('click', function () {
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function (other) {
+      other.classList.remove('open');
+      other.querySelector('.faq-a').style.maxHeight = null;
+      other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+</script>
+</body>
+</html>
